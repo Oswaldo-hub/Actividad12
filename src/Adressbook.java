@@ -17,7 +17,7 @@ public class Adressbook {
       Scanner entrada  = new Scanner(System.in);
       System.out.println("Escribe el numerode la llave");
       a= entrada.nextLine();
-      a = contactos.keySet().toString();
+      
       System.out.println("Escribe el nombre de la llave");
       b = entrada.nextLine();
 
