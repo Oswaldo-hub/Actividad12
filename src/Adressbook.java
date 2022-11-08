@@ -3,12 +3,7 @@ import java.util.*;
 
 public class Adressbook {
 
-    HashMap <String , String> contactos = new HashMap<>() ;
-
-
-
-
-
+   public HashMap <String , String> contactos = new HashMap<>() ;
     public  void Create (HashMap<String,String>contactos){
         Scanner entrada  = new Scanner(System.in);
         System.out.println("Escribe el numerode la llave");
@@ -18,22 +13,15 @@ public class Adressbook {
         System.out.println("Escribe el nombre de la llave");
        String  b = entrada.next();
         contactos.put(a,b);}
-
-
     public String Delete(HashMap<String,String> contactos){
         String a;
         Scanner entrada = new Scanner(System.in);
-        System.out.println("¿Que numero deseas eliminar");
+        System.out.println("¿Que numero deseas eliminar?");
        a = entrada.nextLine();
-
-
-   return    contactos.remove(a);}
-  public void cargar (HashMap<String,String>contactos){
+       return    contactos.remove(a);}
+  public void load (HashMap<String,String>contactos){
       String arch = "C:\\Users\\oswal\\IdeaProjects\\Actividad12\\write.csv";
-
       BufferedReader bufferedReader = null;
-
-
       try {
          File file = new File("C:\\Users\\oswal\\IdeaProjects\\Actividad12\\write.css");
       bufferedReader = new BufferedReader(new FileReader(arch));
@@ -41,8 +29,8 @@ public class Adressbook {
           while ((a = bufferedReader.readLine()) != null) {
               String[]  lista = a.split(":");
 
-              String numero = lista[0].trim();
-              String nombre = lista[1].trim();
+              String numero = lista[0];
+              String nombre = lista[1];
               if(!numero.equals("")&& !nombre.equals("")){
                   contactos.put(nombre,numero);
               }
@@ -54,10 +42,9 @@ public class Adressbook {
           if(bufferedReader!=null) try {bufferedReader.close();}catch (Exception e){}
       }
     }
+    public  void list(HashMap<String,String>contactos){
 
-   public  void list(HashMap<String,String>contactos){
-
-       cargar(contactos);
+       load(contactos);
 
        System.out.println("       Contactos: ");
        Iterator it = contactos.entrySet().iterator();
@@ -68,14 +55,7 @@ public class Adressbook {
        }
 
     }
-
-
-
-
-
-
-
-    public  void guardar(HashMap<String, String> contactos) {
+    public  void save(HashMap<String, String> contactos) {
         String arch = "C:\\Users\\oswal\\IdeaProjects\\Actividad12\\write.csv" ;
         File  file= new File(arch);
         BufferedWriter bufferedWriter = null;
@@ -84,11 +64,8 @@ public class Adressbook {
             bufferedWriter = new BufferedWriter(new FileWriter(file));
             for (Map.Entry<String, String> entry :
                     contactos.entrySet()) {
-
-
                 bufferedWriter.write(entry.getKey() + ":"
                         + entry.getValue());
-
 
                 bufferedWriter.newLine();
             }
